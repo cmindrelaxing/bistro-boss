@@ -7,6 +7,15 @@ import SignupImg from "../../assets/others/authentication2.png"
 
 const Signup = () => {
 
+    const signupBG_style = {
+        backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('../../assets/others/authentication.png')`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        backgroundColor: "rgba(0, 0, 0, 1.9)",
+        opacity: "10"
+    };
+
     const { createUser, googleLogin, githubLogin } = useAuth();
     const navigate = useNavigate();
 
@@ -87,7 +96,7 @@ const Signup = () => {
     
 
     return (
-        <div className=" min-h-screen bg-base-200 flex items-center justify-center py-10 ">
+        <div style={{ signupBG_style }} className=" min-h-screen flex items-center justify-center py-10 ">
             <div className="hero-content w-full flex-col-reverse md:flex-row justify-center">
 
                 <div className="text-center mb-2 mt-16 md:mt-0">

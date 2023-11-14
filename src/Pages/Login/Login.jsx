@@ -11,6 +11,15 @@ import { useEffect, useRef, useState } from "react";
 
 const Login = () => {
 
+    const loginBG_style = {
+        backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('../../assets/others/authentication.png')`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        backgroundColor: "rgba(0, 0, 0, 1.9)",
+        opacity: "10"
+    };
+
     const captchaRef = useRef(null);
     const [disabled, setDisabled] = useState(true);
 
@@ -125,7 +134,7 @@ const Login = () => {
     
 
     return (
-        <div className=" min-h-screen bg-base-200 flex items-center justify-center py-10 ">
+        <div style={{ loginBG_style }} className=" min-h-screen flex items-center justify-center py-10 ">
             <div className="hero-content w-full flex-col-reverse md:flex-row justify-center">
                 <div className="text-center mb-2">
                     {/* <h1 className="text-5xl font-bold mb-14">Signup now!</h1> */}

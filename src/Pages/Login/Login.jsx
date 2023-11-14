@@ -3,10 +3,16 @@ import toast from "react-hot-toast";
 // import axios from "axios";
 import useAuth from "../../hooks/useAuth";
 import loginImg from "../../assets/others/authentication2.png"
+import { loadCaptchaEnginge, LoadCanvasTemplate, validateCaptcha } from 'react-simple-captcha';
+import { useEffect, useRef, useState } from "react";
+
 
 
 
 const Login = () => {
+
+    const captchaRef = useRef(null);
+    const [disabled, setDisabled] = useState(true);
 
 
     const {signIn, googleLogin, githubLogin} = useAuth();
@@ -98,6 +104,23 @@ const Login = () => {
                 console.log(err);
             })
     };
+
+
+    useEffect(() => {
+        loadCaptchaEnginge(6);
+    }, []);
+
+
+    // validate captcha
+    const handleValidateCaptcha = () => {
+        const user_captcha_value = captchaRef.current.value;
+        if(validateCaptcha(user_captcha_value)){
+            setDisabled(false);
+        }
+        else {
+            setDisabled(true);
+        }
+    };
     
     
 
@@ -117,6 +140,7 @@ const Login = () => {
                         </label>
                         <input type="email" placeholder="email" name="email" className="focus:outline-none focus:border-[2px] focus:border-[#5dff33] focus:text-[#5dff33] input input-bordered" required />
                         </div>
+
                         <div className="form-control">
                         <label className="label">
                             <span className="label-text">Password</span>
@@ -126,8 +150,17 @@ const Login = () => {
                             <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
                         </label>
                         </div>
+
+                        <div className="form-control">
+                        <label className="label">
+                        <LoadCanvasTemplate />
+                        </label>
+                        <input type="text" placeholder="Type captcha" name="captcha" ref={captchaRef} className="focus:outline-none focus:border-[2px] focus:border-[#5dff33] focus:text-[#5dff33] input input-bordered" required />
+                        <button onClick={handleValidateCaptcha} className="btn btn-outline btn-xs mt-5 py-1">Validation Captcha</button>
+                        </div>
+
                         <div className="form-control mt-6">
-                        <button className="btn bg-[#5dff33] text-white py-2 hover:bg-black hover:text-white rounded-full">Login</button>
+                        <button disabled={disabled} className="btn bg-[#5dff33] text-white py-2 hover:bg-black hover:text-white rounded-full">Login</button>
                         </div>
 
                         <p className="text-center mt-4"><small>Do not Have an account <Link to="/signup" className="text-blue-600 font-bold">Signup</Link></small></p>

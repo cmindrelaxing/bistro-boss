@@ -1,6 +1,7 @@
 import toast from 'react-hot-toast';
 import useAuth from "../../hooks/useAuth";
 import { Link, useNavigate } from 'react-router-dom';
+import SignupImg from "../../assets/others/authentication2.png"
 
 
 
@@ -91,7 +92,7 @@ const Signup = () => {
 
                 <div className="text-center mb-2 mt-16 md:mt-0">
                     {/* <h1 className="text-5xl font-bold mb-14">Signup now!</h1> */}
-                    <img className='lg:w-[85%]' src="https://i.ibb.co/hYHTbB5/about-img.png" alt="" />
+                    <img className='lg:w-[85%]' src={SignupImg} alt="" />
                 </div>
 
                 <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">

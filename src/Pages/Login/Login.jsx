@@ -1,7 +1,8 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
-import axios from "axios";
+// import axios from "axios";
 import useAuth from "../../hooks/useAuth";
+import loginImg from "../../assets/others/authentication2.png"
 
 
 
@@ -48,19 +49,20 @@ const Login = () => {
         .then(result => {
             const loggedInUser = result.user;
             console.log(loggedInUser);
-            const user = {email};
+            // const user = {email};
             toast.success('Login Successfully completed');
+            navigate(location?.state ? location?.state : '/')
             
             
             // get access token
-            axios.post('https://restaurant-management-server-g3evb8yb5.vercel.app/jwt', user, {withCredentials: true})
-            .then(res => {
-                console.log(res.data);
-                if(res.data.success) {
-                    // navigate after login success
-                    navigate(location?.state ? location?.state : '/')
-                }
-            })
+            // axios.post('https://restaurant-management-server-g3evb8yb5.vercel.app/jwt', user, {withCredentials: true})
+            // .then(res => {
+            //     console.log(res.data);
+            //     if(res.data.success) {
+            //         // navigate after login success
+            //         navigate(location?.state ? location?.state : '/')
+            //     }
+            // })
         })
         .catch(err => {
             console.error(err);
@@ -104,7 +106,7 @@ const Login = () => {
             <div className="hero-content w-full flex-col-reverse md:flex-row justify-center">
                 <div className="text-center mb-2">
                     {/* <h1 className="text-5xl font-bold mb-14">Signup now!</h1> */}
-                    <img className='lg:w-[85%] mt-16 md:mt-0' src="https://i.ibb.co/hYHTbB5/about-img.png" alt="" />
+                    <img className='lg:w-[85%] mt-16 md:mt-0' src={loginImg} alt="" />
                 </div>
 
                 <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
